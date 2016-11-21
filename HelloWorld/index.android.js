@@ -82,46 +82,204 @@
 
 // AppRegistry.registerComponent('HelloWorld', () => LotsOfGreetings);
 
+// import React, { Component } from 'react';
+// import { StyleSheet,AppRegistry, Text, View } from 'react-native';
+
+// class Blink extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { showText: true, TextColor: 'red' };
+
+
+//     // 每1000毫秒对showText状态做一次取反操作
+//     setInterval(() => {
+//       // this.setState({ showText: !this.state.showText });
+//       this.setState({ TextColor: this.state.TextColor == 'black' ? 'red' : 'black' });
+//     }, 1000);
+//   }
+
+//   render() {
+//     // 根据当前showText的值决定是否显示text内容
+//     let display = this.state.showText ? this.props.text : ' ';
+//     return (
+//       <Text style={{color: this.state.TextColor}}>{display}</Text>
+//     );
+//   }
+// }
+
+// class BlinkApp extends Component {
+//   render() {
+//     return (
+//       <View>
+//         <Blink text='I love to blink' />
+//         <Blink text='Yes blinking is so great' />
+//         <Blink text='Why did they ever take this out of HTML' />
+//         <Blink text='Look at me look at me look at me' />
+//       </View>
+//     );
+//   }
+// }
+// const styles = StyleSheet.create({
+//   text:{
+//     color:'red'
+//   }
+// });
+// AppRegistry.registerComponent('HelloWorld', () => BlinkApp);
+
+// import React, { Component } from 'react';
+// import { AppRegistry, View } from 'react-native';
+
+// class FixedDimensionsBasics extends Component {
+//   render() {
+//     return (
+//       <View>
+//         <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+//         <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}} />
+//         <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}} />
+//       </View>
+//     );
+//   }
+// };
+// // 注册应用(registerComponent)后才能正确渲染
+// // 注意：只把应用作为一个整体注册一次，而不是每个组件/模块都注册
+// AppRegistry.registerComponent('HelloWorld', () => FixedDimensionsBasics);
+
+// import React, { Component } from 'react';
+// import { AppRegistry, View } from 'react-native';
+
+// class FlexDimensionsBasics extends Component {
+//   render() {
+//     return (
+//       // 试试去掉父View中的`flex: 1`。
+//       // 则父View不再具有尺寸，因此子组件也无法再撑开。
+//       // 然后再用`height: 300`来代替父View的`flex: 1`试试看？
+//       <View style={{ flex: 1 }}>
+//         <View style={{ flex: 1, backgroundColor: 'powderblue' }} />
+//         <View style={{ flex: 1, backgroundColor: 'skyblue' }} />
+//         <View style={{ flex: 3, backgroundColor: 'steelblue' }} />
+//       </View>
+//     );
+//   }
+// };
+
+// AppRegistry.registerComponent('HelloWorld', () => FlexDimensionsBasics);
+
+// import React, { Component } from 'react';
+// import { AppRegistry, View } from 'react-native';
+
+// class FlexDirectionBasics extends Component {
+//   render() {
+//     return (
+//       // 尝试把`flexDirection`改为`column`看看
+//       <View style={{flex: 1, flexDirection: 'column-reverse'}}>
+//         <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+//         <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+//         <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+//       </View>
+//     );
+//   }
+// };
+
+// AppRegistry.registerComponent('HelloWorld', () => FlexDirectionBasics);
+
+// import React, { Component } from 'react';
+// import { AppRegistry, View } from 'react-native';
+
+// class JustifyContentBasics extends Component {
+//   render() {
+//     return (
+//       // 尝试把`justifyContent`改为`center`看看
+//       // 尝试把`flexDirection`改为`row`看看
+//       <View style={{
+//         flex: 1,
+//         flexDirection: 'row',
+//         justifyContent: 'space-between',
+//         alignItems: 'stretch',
+//       }}>
+//         <View style={{ width: 50, height: 50, backgroundColor: 'powderblue' }} />
+//         <View style={{ width: 50, height: 50, backgroundColor: 'skyblue' }} />
+//         <View style={{ width: 50, height: 50, backgroundColor: 'steelblue' }} />
+//       </View>
+//     );
+//   }
+// };
+
+// AppRegistry.registerComponent('HelloWorld', () => JustifyContentBasics);
+
+// import React, { Component } from 'react';
+// import { AppRegistry, Text, TextInput, View } from 'react-native';
+
+// class PizzaTranslator extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {text: ''};
+//   }
+
+//   render() {
+//     return (
+//       <View style={{padding: 10}}>
+//         <TextInput
+//           style={{height: 40}}
+//           placeholder="Type here to translate!"
+//           onChangeText={(text) => this.setState({text})}
+//         />
+//         <Text style={{padding: 10, fontSize: 42}}>
+//           {this.state.text.split(' ').map((word) => {  var result = word && '🍕'; 
+//              return result;}).join(' ')}
+//         </Text>
+//       </View>
+//     );
+//   }
+// }
+// // 注册应用(registerComponent)后才能正确渲染
+// // 注意：只把应用作为一个整体注册一次，而不是每个组件/模块都注册
+// AppRegistry.registerComponent('HelloWorld', () => PizzaTranslator);
+
 import React, { Component } from 'react';
-import { StyleSheet,AppRegistry, Text, View } from 'react-native';
+import{ AppRegistry, ScrollView, Image, Text, View } from 'react-native'
 
-class Blink extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { showText: true, TextColor: 'red' };
-
-
-    // 每1000毫秒对showText状态做一次取反操作
-    setInterval(() => {
-      // this.setState({ showText: !this.state.showText });
-      this.setState({ TextColor: this.state.TextColor == 'black' ? 'red' : 'black' });
-    }, 1000);
-  }
-
+class IScrolledDownAndWhatHappenedNextShockedMe extends Component {
   render() {
-    // 根据当前showText的值决定是否显示text内容
-    let display = this.state.showText ? this.props.text : ' ';
-    return (
-      <Text style={{color: this.state.TextColor}}>{display}</Text>
+      return(
+        <ScrollView>
+          <Text style={{fontSize:30}}>Scroll me plz</Text>
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Text style={{fontSize:30}}>If you like</Text>
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Text style={{fontSize:30}}>Scrolling down</Text>
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Text style={{fontSize:30}}>What's the best</Text>
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Text style={{fontSize:30}}>Framework around?</Text>
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Image source={require('./img/favicon.png')} />
+          <Text style={{fontSize:30}}>React Native</Text>
+        </ScrollView>
     );
   }
 }
 
-class BlinkApp extends Component {
-  render() {
-    return (
-      <View>
-        <Blink text='I love to blink' />
-        <Blink text='Yes blinking is so great' />
-        <Blink text='Why did they ever take this out of HTML' />
-        <Blink text='Look at me look at me look at me' />
-      </View>
-    );
-  }
-}
-const styles = StyleSheet.create({
-  text:{
-    color:'red'
-  }
-});
-AppRegistry.registerComponent('HelloWorld', () => BlinkApp);
+// 注册应用(registerComponent)后才能正确渲染
+// 注意：只把应用作为一个整体注册一次，而不是每个组件/模块都注册
+AppRegistry.registerComponent(
+  'HelloWorld',
+  () => IScrolledDownAndWhatHappenedNextShockedMe);
