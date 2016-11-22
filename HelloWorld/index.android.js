@@ -235,51 +235,81 @@
 // // 注意：只把应用作为一个整体注册一次，而不是每个组件/模块都注册
 // AppRegistry.registerComponent('HelloWorld', () => PizzaTranslator);
 
-import React, { Component } from 'react';
-import{ AppRegistry, ScrollView, Image, Text, View } from 'react-native'
+// import React, { Component } from 'react';
+// import{ AppRegistry, ScrollView, Image, Text, View } from 'react-native'
 
-class IScrolledDownAndWhatHappenedNextShockedMe extends Component {
+// class IScrolledDownAndWhatHappenedNextShockedMe extends Component {
+//   render() {
+//       return(
+//         <ScrollView>
+//           <Text style={{fontSize:30}}>Scroll me plz</Text>
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Text style={{fontSize:30}}>If you like</Text>
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Text style={{fontSize:30}}>Scrolling down</Text>
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Text style={{fontSize:30}}>What's the best</Text>
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Text style={{fontSize:30}}>Framework around?</Text>
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Image source={require('./img/favicon.png')} />
+//           <Text style={{fontSize:30}}>React Native</Text>
+//         </ScrollView>
+//     );
+//   }
+// }
+
+// // 注册应用(registerComponent)后才能正确渲染
+// // 注意：只把应用作为一个整体注册一次，而不是每个组件/模块都注册
+// AppRegistry.registerComponent(
+//   'HelloWorld',
+//   () => IScrolledDownAndWhatHappenedNextShockedMe);
+
+import React, { Component } from 'react';
+import { AppRegistry, ListView, Text, View } from 'react-native';
+
+class ListViewBasics extends Component {
+  // 初始化模拟数据
+  constructor(props) {
+    super(props);
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      dataSource: ds.cloneWithRows([
+        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
+      ])
+    };
+  }
   render() {
-      return(
-        <ScrollView>
-          <Text style={{fontSize:30}}>Scroll me plz</Text>
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Text style={{fontSize:30}}>If you like</Text>
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Text style={{fontSize:30}}>Scrolling down</Text>
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Text style={{fontSize:30}}>What's the best</Text>
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Text style={{fontSize:30}}>Framework around?</Text>
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Text style={{fontSize:30}}>React Native</Text>
-        </ScrollView>
+    return (
+      <View style={{flex: 1, paddingTop: 22}}>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => <Text>{rowData}</Text>}
+        />
+      </View>
     );
   }
 }
 
 // 注册应用(registerComponent)后才能正确渲染
 // 注意：只把应用作为一个整体注册一次，而不是每个组件/模块都注册
-AppRegistry.registerComponent(
-  'HelloWorld',
-  () => IScrolledDownAndWhatHappenedNextShockedMe);
+AppRegistry.registerComponent('HelloWorld', () => ListViewBasics);
