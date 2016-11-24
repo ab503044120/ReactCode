@@ -284,32 +284,110 @@
 //   'HelloWorld',
 //   () => IScrolledDownAndWhatHappenedNextShockedMe);
 
-import React, { Component } from 'react';
-import { AppRegistry, ListView, Text, View } from 'react-native';
+// import React, { Component } from 'react';
+// import { AppRegistry, ListView, Text, View } from 'react-native';
 
-class ListViewBasics extends Component {
-  // 初始化模拟数据
-  constructor(props) {
-    super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
-      ])
-    };
-  }
+// class ListViewBasics extends Component {
+//   // 初始化模拟数据
+//   constructor(props) {
+//     super(props);
+//     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+//     this.state = {
+//       dataSource: ds.cloneWithRows([
+//         'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
+//       ])
+//     };
+//   }
+//   render() {
+//     return (
+//       <View style={{flex: 1, paddingTop: 22}}>
+//         <ListView
+//           dataSource={this.state.dataSource}
+//           renderRow={(rowData) => <Text>{rowData}</Text>}
+//         />
+//       </View>
+//     );
+//   }
+// }
+
+// // 注册应用(registerComponent)后才能正确渲染
+// // 注意：只把应用作为一个整体注册一次，而不是每个组件/模块都注册
+// AppRegistry.registerComponent('HelloWorld', () => ListViewBasics);
+
+import React, { Component } from 'react';
+import { AppRegistry, Text, View, StyleSheet, Alert, Button, Navigator } from 'react-native';
+import SecondPage from './js/SecondPage';
+class AppNavigator extends Component {
   render() {
     return (
-      <View style={{flex: 1, paddingTop: 22}}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text>{rowData}</Text>}
-        />
-      </View>
+      <Navigator
+        initialRoute={{ name: 'firstPage', component: FirstPage }}
+        configureScene={(route) => {
+          return Navigator.SceneConfigs.FadeAndroid;
+        } }
+        renderScene={(route, navigator) => {
+          let Component = route.component;
+          return <Component {...route.params} navigator={navigator} />;
+        } } />
     );
   }
 }
+class FirstPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  onClick() {
+    // Alert.alert("正在跳转");
+    const { navigator } = this.props;
+    //为什么这里可以取得 props.navigator?请看上文:
+    //<Component {...route.params} navigator={navigator} />
+    //这里传递了navigator作为props
+    if (navigator) {
+      navigator.push({
+        name: 'SecondPageComponent',
+        component: SecondPage,
+      });
+    }
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>
+          第一页
+          </Text>
+        <View style={styles.btncontainer} >
+          <Button
+            title='   下一页   '
+            style={styles.btn}
+            onPress={this.onClick.bind(this)} />
+        </View>
+      </View>
+    );
+  }
 
+}
+const styles = StyleSheet.create({
+  text: {
+    textAlign: 'center',
+    color: 'blue'
+  },
+  btn: {
+    width: 50,
+    height: 50,
+    textAlign: 'center',
+    color: 'red'
+  },
+  container: {
+    flex: 1
+  },
+  btncontainer: {
+    flexDirection: 'column',
+    // justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1
+  }
+});
 // 注册应用(registerComponent)后才能正确渲染
 // 注意：只把应用作为一个整体注册一次，而不是每个组件/模块都注册
-AppRegistry.registerComponent('HelloWorld', () => ListViewBasics);
+AppRegistry.registerComponent('HelloWorld', () => AppNavigator);
